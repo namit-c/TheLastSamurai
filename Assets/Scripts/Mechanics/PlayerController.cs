@@ -42,6 +42,12 @@ namespace Platformer.Mechanics
 
         public Bounds Bounds => collider2d.bounds;
 
+        public KeyCode left;
+        public KeyCode right;
+        public KeyCode jumpButton;
+
+        private Rigidbody2D theRB;
+
         void Awake()
         {
             health = GetComponent<Health>();
@@ -55,10 +61,23 @@ namespace Platformer.Mechanics
         {
             if (controlEnabled)
             {
-                move.x = Input.GetAxis("Horizontal");
-                if (jumpState == JumpState.Grounded && Input.GetButtonDown("Jump"))
+                //Cannot turn properly
+                if (Input.GetKey(right))
+                {
+                    move.x = 1;
+                }
+                if (Input.GetKey(left))
+                {
+                    move.x = -1;
+                }
+                if (Input.GetKeyUp(right) || Input.GetKeyUp(left))
+                {
+                    move.x = 0;
+                }
+
+                if (jumpState == JumpState.Grounded && Input.GetKey(jumpButton))
                     jumpState = JumpState.PrepareToJump;
-                else if (Input.GetButtonUp("Jump"))
+                else if (Input.GetKeyDown(jumpButton))
                 {
                     stopJump = true;
                     Schedule<PlayerStopJump>().player = this;
