@@ -40,6 +40,7 @@ namespace Platformer.Mechanics
         internal Animator animator;
         readonly PlatformerModel model = Simulation.GetModel<PlatformerModel>();
 
+
         public Bounds Bounds => collider2d.bounds;
 
         void Awake()
@@ -56,9 +57,9 @@ namespace Platformer.Mechanics
             if (controlEnabled)
             {
                 move.x = Input.GetAxis("Horizontal");
-                if (jumpState == JumpState.Grounded && Input.GetButtonDown("Jump"))
+                if (jumpState == JumpState.Grounded && Input.GetKeyDown("up"))
                     jumpState = JumpState.PrepareToJump;
-                else if (Input.GetButtonUp("Jump"))
+                else if (Input.GetKeyUp("up"))
                 {
                     stopJump = true;
                     Schedule<PlayerStopJump>().player = this;
