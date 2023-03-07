@@ -13,7 +13,7 @@ public class CharacterController2D_P2 : MonoBehaviour
 	[SerializeField] private Collider2D m_CrouchDisableCollider;				// A collider that will be disabled when crouching
 	[SerializeField] private Transform m_spawnpoint;
 
-	[SerializeField] private bool dead = false;
+	[SerializeField] public bool dead = false;
 
 	const float k_GroundedRadius = .2f; // Radius of the overlap circle to determine if grounded
 	private bool m_Grounded;            // Whether or not the player is grounded.
@@ -152,7 +152,7 @@ public class CharacterController2D_P2 : MonoBehaviour
 		transform.localScale = theScale;
 	}
 
-	private Vector2 death() {
+	public Vector2 death() {
  		Vector2 rv = m_spawnpoint.transform.position;
 
  		m_Rigidbody2D.transform.position = rv;

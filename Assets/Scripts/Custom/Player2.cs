@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Player2 : MonoBehaviour
 {
+    public CharacterController2D_P2 controller;
     public float maxHealth = 100f;
     private float currentHealth;
     private Animator anim;
@@ -19,8 +20,8 @@ public class Player2 : MonoBehaviour
         Debug.Log("damage: " + damage);
         
         if(currentHealth <= 0){
-            Debug.Log("enemy dead");
-            Destroy(gameObject);
+            controller.death();
+            currentHealth = maxHealth;
         }
     }
 }
