@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AttackMechanics : MonoBehaviour
+public class AttackMechanics2 : MonoBehaviour
 {
     public Animator animator;
 
@@ -16,11 +16,10 @@ public class AttackMechanics : MonoBehaviour
     public void Attack(Transform attackPoint, float attackRange){
         // More general; can expand to multiple enemies (maybe for training)
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayer);
-        // Debug.Log("enemies 1 length: " + hitEnemies.Length);
+        Debug.Log("enemies 2 length: " + hitEnemies.Length);
 
         foreach(Collider2D enemy in hitEnemies){
-            enemy.GetComponent<Player2>().TakeDamage(attackDamage);
-            // Debug.Log("enemies: " + encurrentHealthemy.GetComponent<Target>());
+            enemy.GetComponent<Player1>().TakeDamage(attackDamage);
         }
     }
 

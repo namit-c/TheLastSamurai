@@ -2,10 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerMovement : MonoBehaviour
+public class PlayerMovement2 : MonoBehaviour
 {
-    public CharacterController2D controller;
-    public AttackMechanics attackMechanics;
+    public CharacterController2D_P2 controller;
+    public AttackMechanics2 attackMechanics;
     public Animator animator;
     public float moveSpeed;
     public float moveCooldown;
@@ -27,6 +27,9 @@ public class PlayerMovement : MonoBehaviour
 
     void Start(){
         rb = gameObject.GetComponent<Rigidbody2D>();
+        Vector3 theScale = transform.localScale;
+		theScale.x *= -1;
+		transform.localScale = theScale;
     }
 
     // Update is called once per frame
@@ -48,11 +51,12 @@ public class PlayerMovement : MonoBehaviour
             {
                 xSpeed = 0;
             }
-            animator.SetFloat("Speed", Mathf.Abs(xSpeed));
+            animator.SetFloat("Speed2", Mathf.Abs(xSpeed));
 
             // if(Input.GetAxisRaw("Horizontal") != 0){
             //     // if (animator.GetCurrentAnimatorStateInfo(0).normalizedTime > 1)
             //     // {
+            //     Debug.Log("test");
             //     AttackAfterMove();
             //     // }
             // }
@@ -64,7 +68,7 @@ public class PlayerMovement : MonoBehaviour
             // yInput = Input.GetAxis("Vertical");
             if(Input.GetKeyDown(jumpButton)){
                 jump = true;
-                animator.SetBool("IsJumping", true);
+                animator.SetBool("IsJumping2", true);
                 attackMechanics.Attack(attackPoint1, attackRange1);
             }
         }
@@ -75,7 +79,7 @@ public class PlayerMovement : MonoBehaviour
     }
 
     public void OnLanding(){
-        animator.SetBool("IsJumping", false);
+        animator.SetBool("IsJumping2", false);
     }
 
     void FixedUpdate(){
