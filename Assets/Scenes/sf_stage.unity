@@ -282,7 +282,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 707916809973215438, guid: 108a5b34d9693404b973d37939bf4f13, type: 3}
       propertyPath: m_RootOrder
-      value: 7
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 707916809973215438, guid: 108a5b34d9693404b973d37939bf4f13, type: 3}
       propertyPath: m_LocalPosition.x
@@ -467,7 +467,7 @@ TilemapRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: d5f047bbdfb7089409ca688d853c5f75, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1969,7 +1969,7 @@ Transform:
   - {fileID: 661529658}
   - {fileID: 715757319}
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &400627313
 GameObject:
@@ -2391,6 +2391,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player1
       objectReference: {fileID: 0}
+    - target: {fileID: 702436753656313333, guid: 920eb94c5f4f78548916c04419824448, type: 3}
+      propertyPath: m_SortingLayer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 702436753656313333, guid: 920eb94c5f4f78548916c04419824448, type: 3}
+      propertyPath: m_SortingLayerID
+      value: -1111453539
+      objectReference: {fileID: 0}
     - target: {fileID: 702436753656313334, guid: 920eb94c5f4f78548916c04419824448, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -2450,7 +2458,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6600302691220913292, guid: 242ed8d93c45eba4389c9b87dad3963a, type: 3}
       propertyPath: m_RootOrder
-      value: 6
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 6600302691220913292, guid: 242ed8d93c45eba4389c9b87dad3963a, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2547,7 +2555,7 @@ TilemapRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: d5f047bbdfb7089409ca688d853c5f75, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2887,7 +2895,7 @@ TilemapRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: d5f047bbdfb7089409ca688d853c5f75, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
