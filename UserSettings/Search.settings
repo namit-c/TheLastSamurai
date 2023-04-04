@@ -7,7 +7,7 @@ onBoardingDoNotAskAgain = true
 showPackageIndexes = false
 showStatusBar = false
 scopes = {
-	"last_search.EAB0C2BA" = "square"
+	"last_search.EAB0C2BA" = "samurai sprite sheet 2d"
 	"OpenInspectorPreview.EAB0C2BA" = "0"
 	"currentGroup.EAB0C2BA" = "all"
 }
@@ -56,6 +56,9 @@ providers = {
 objectSelectors = {
 }
 recentSearches = [
+	"sam"
+	"v"
+	"vi"
 ]
 searchItemFavorites = [
 ]
