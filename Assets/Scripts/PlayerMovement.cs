@@ -30,49 +30,44 @@ public class PlayerMovement : MonoBehaviour
     }
 
     // Update is called once per frame
+    
     void Update()
     {
         if(Time.time >= nextMoveTime){
 
             if (Input.GetKey(right))
             {
-                SFXManager.sfxInstance.Audio.PlayOneShot(SFXManager.sfxInstance.Click);
+                controller.Move(moveSpeed, false, jump);
                 xSpeed = moveSpeed;
-                AttackAfterMove();
+
             }
             if (Input.GetKey(left))
             {
-                SFXManager.sfxInstance.Audio.PlayOneShot(SFXManager.sfxInstance.Click);
+                controller.Move(-moveSpeed, false, jump);
                 xSpeed = -moveSpeed;
-                AttackAfterMove();
             }
             if (Input.GetKeyUp(right) || Input.GetKeyUp(left))
             {
                 xSpeed = 0;
+                SFXManager.sfxInstance.Audio.PlayOneShot(SFXManager.sfxInstance.Click);
+                AttackAfterMove();
             }
             animator.SetFloat("Speed", Mathf.Abs(xSpeed));
-
-            // if(Input.GetAxisRaw("Horizontal") != 0){
-            //     // if (animator.GetCurrentAnimatorStateInfo(0).normalizedTime > 1)
-            //     // {
-            //     AttackAfterMove();
-            //     // }
-            // }
 
             if(Mathf.Abs(xSpeed) > 0 || Input.GetKeyDown(jumpButton)){
                 nextMoveTime = Time. time + 1f / movementRate;
             }
 
-            // yInput = Input.GetAxis("Vertical");
             if(Input.GetKeyDown(jumpButton)){
                 SFXManager.sfxInstance.Audio.PlayOneShot(SFXManager.sfxInstance.Click);
                 jump = true;
                 animator.SetBool("IsJumping", true);
                 attackMechanics.Attack(attackPoint1, attackRange1);
             }
+            
         }
     }
-    
+
     public void AttackAfterMove(){
         attackMechanics.Attack(attackPoint2, attackRange2);
     }
@@ -83,8 +78,8 @@ public class PlayerMovement : MonoBehaviour
 
     void FixedUpdate(){
 
-        controller.Move(xSpeed, false, jump);
-        jump = false;
+        //controller.Move(xSpeed, false, jump);
+        //jump = false;
         xSpeed = 0f;
 
     }
