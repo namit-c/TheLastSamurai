@@ -9,6 +9,8 @@ public class Player: MonoBehaviour
     public float maxHealth = 100f;
     public float currentHealth;
     private Animator anim;
+
+    public bool killPlayer = false;
     
     // Start is called before the first frame update
     void Start()
@@ -21,10 +23,18 @@ public class Player: MonoBehaviour
         currentHealth -= damage;
         
         if(currentHealth <= 0){
-            controller.death();
-            currentHealth = maxHealth;
+            // controller.death();
+            // currentHealth = maxHealth;
             // the menu screen is index 0 in the build settings (will change to string later)
-            SceneManager.LoadScene(0);
+            // SceneManager.LoadScene(0);
+
+            switchScenes();
         }
     }
+
+
+    public void switchScenes(){
+        SceneManager.LoadScene((SceneManager.GetActiveScene().buildIndex + 1)%4);
+    }
+
 }
