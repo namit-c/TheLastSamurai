@@ -4,21 +4,22 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public CharacterController2D controller;
     public AttackMechanics attackMechanics;
     public Animator animator;
-    public float moveSpeed;
     public float moveCooldown;
     public Transform attackPoint1;
     public Transform attackPoint2;
     public float attackRange1;
     public float attackRange2;
 
-    private float xSpeed;
+    private float speed = 8f;
+    private float horizontal;
     private bool jump = true;
-    private float yInput;
     private Rigidbody2D rb;
     public float movementRate = 2f;
+    private float jumpingPower = 24f;
+    private bool isFacingRight = true;
+
     private float nextMoveTime = 0f;
 
     public KeyCode left;
@@ -28,47 +29,37 @@ public class PlayerMovement : MonoBehaviour
     void Start(){
         rb = gameObject.GetComponent<Rigidbody2D>();
     }
-
-    // Update is called once per frame
     
     void Update()
     {
         if(Time.time >= nextMoveTime){
 
-            if (Input.GetKey(right))
-            {
-                controller.Move(moveSpeed, false, jump);
-                xSpeed = moveSpeed;
+            horizontal = Input.GetAxisRaw("Horizontal");
 
-            }
-            if (Input.GetKey(left))
+            if (Input.GetButtonDown("Jump"))
             {
-                controller.Move(-moveSpeed, false, jump);
-                xSpeed = -moveSpeed;
+                rb.velocity = new Vector2(rb.velocity.x, jumpingPower);
             }
-            if (Input.GetKeyUp(right) || Input.GetKeyUp(left))
+
+            if (Input.GetButtonUp("Jump") && rb.velocity.y > 0f)
             {
-                xSpeed = 0;
-                SFXManager.sfxInstance.Audio.PlayOneShot(SFXManager.sfxInstance.Click);
+                rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * 0.3f);
                 AttackAfterMove();
             }
-            animator.SetFloat("Speed", Mathf.Abs(xSpeed));
 
-            if(Mathf.Abs(xSpeed) > 0 || Input.GetKeyDown(jumpButton)){
-                nextMoveTime = Time. time + 1f / movementRate;
+
+            if (Input.GetKeyUp(right) || Input.GetKeyUp(left))
+            {
+                AttackAfterMove();
+                animator.SetFloat("Speed", Mathf.Abs(speed));
             }
 
-            if(Input.GetKeyDown(jumpButton)){
-                SFXManager.sfxInstance.Audio.PlayOneShot(SFXManager.sfxInstance.Click);
-                jump = true;
-                animator.SetBool("IsJumping", true);
-                attackMechanics.Attack(attackPoint1, attackRange1);
-            }
-            
+            Flip();
         }
     }
 
     public void AttackAfterMove(){
+        SFXManager.sfxInstance.Audio.PlayOneShot(SFXManager.sfxInstance.Click);
         attackMechanics.Attack(attackPoint2, attackRange2);
     }
 
@@ -77,10 +68,17 @@ public class PlayerMovement : MonoBehaviour
     }
 
     void FixedUpdate(){
+        rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);
+    }
 
-        //controller.Move(xSpeed, false, jump);
-        //jump = false;
-        xSpeed = 0f;
-
+    private void Flip()
+    {
+        if (isFacingRight && horizontal < 0f || !isFacingRight && horizontal > 0f)
+        {
+            isFacingRight = !isFacingRight;
+            Vector3 localScale = transform.localScale;
+            localScale.x *= -1f;
+            transform.localScale = localScale;
+        }
     }
 }
