@@ -170,6 +170,8 @@ public class CharacterController2D : MonoBehaviour
 
  		// m_Rigidbody2D.transform.position = rv;
 
+		GameState.player1Point();
+
 		Debug.Log("dead");
         SceneManager.LoadScene((SceneManager.GetActiveScene().buildIndex + 1)%4);
 
