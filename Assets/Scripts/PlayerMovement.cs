@@ -21,6 +21,8 @@ public class PlayerMovement : MonoBehaviour
     private bool isFacingRight = true;
 
     private float nextMoveTime = 0f;
+    private float cooldown = 1;
+    private float lastJump;
 
     public KeyCode left;
     public KeyCode right;
@@ -38,8 +40,18 @@ public class PlayerMovement : MonoBehaviour
 
             if (Input.GetButtonDown("Jump"))
             {
+
+                if (Time.time - lastJump < cooldown)
+                {
+                    return;
+                }
+                lastJump = Time.time;
+
                 rb.velocity = new Vector2(rb.velocity.x, jumpingPower);
+                
             }
+
+            
 
             if (Input.GetButtonUp("Jump") && rb.velocity.y > 0f)
             {
@@ -80,5 +92,10 @@ public class PlayerMovement : MonoBehaviour
             localScale.x *= -1f;
             transform.localScale = localScale;
         }
+    }
+
+    private bool JumpCooldown()
+    {
+        return false;
     }
 }
