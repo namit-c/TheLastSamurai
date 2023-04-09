@@ -1,5 +1,7 @@
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.SceneManagement;
+
 
 public class CharacterController2D : MonoBehaviour
 {
@@ -158,11 +160,24 @@ public class CharacterController2D : MonoBehaviour
 		transform.localScale = theScale;
 	}
 
-	public Vector2 death() {
- 		Vector2 rv = m_spawnpoint.transform.position;
 
- 		m_Rigidbody2D.transform.position = rv;
+	/*
+	* CALL WHEN PLAYER DIES.
+	* SWITCHES SCENE TO NEXT
+	*/
+	public void death() {
+ 		// Vector2 rv = m_spawnpoint.transform.position;
 
- 		return rv;
+ 		// m_Rigidbody2D.transform.position = rv;
+
+		GameState.player1Point();
+
+		Debug.Log("dead");
+        SceneManager.LoadScene((SceneManager.GetActiveScene().buildIndex + 1)%4);
+
+
+		
+
+ 		// return rv;
     }
 }
