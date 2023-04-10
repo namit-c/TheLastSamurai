@@ -18,8 +18,8 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody2D rb;
     public float movementRate = 2f;
     private float jumpingPower = 24f;
-    private bool isFacingRight = true;
-
+    public bool isFacingRight = true;
+    
     private float nextMoveTime = 0f;
     private float cooldown = 1;
     private float lastJump;
@@ -35,8 +35,6 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         if(Time.time >= nextMoveTime){
-
-            //horizontal = Input.GetAxisRaw("Horizontal");
 
             if (Input.GetKey(left))
             {
@@ -97,9 +95,7 @@ public class PlayerMovement : MonoBehaviour
     }
 
     void FixedUpdate(){
-        //rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);
         animator.SetBool("Attack", false);
-
     }
 
     private void Flip()
