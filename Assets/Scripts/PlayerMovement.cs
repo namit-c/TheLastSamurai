@@ -39,10 +39,12 @@ public class PlayerMovement : MonoBehaviour
             if (Input.GetKey(left))
             {
                 rb.velocity = new Vector2(-speed, rb.velocity.y);
+                horizontal = -1f;
             }
             else if (Input.GetKey(right))
             {
                 rb.velocity = new Vector2(speed, rb.velocity.y);
+                horizontal = 1f;
             }
 
             else if (Input.GetKeyUp(right) || Input.GetKeyUp(left))
@@ -73,7 +75,8 @@ public class PlayerMovement : MonoBehaviour
                 rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * 0.3f);
                 AttackAfterJump();
             }
-            Flip();
+            Flip(horizontal);
+            horizontal = 0f;
         }
     }
 
@@ -98,12 +101,14 @@ public class PlayerMovement : MonoBehaviour
         animator.SetBool("Attack", false);
     }
 
-    private void Flip()
+    private void Flip(float horizontal)
     {
+        print("is facing right: " + isFacingRight + "; horizontal: " + horizontal);
         if (isFacingRight && horizontal < 0f || !isFacingRight && horizontal > 0f)
         {
             isFacingRight = !isFacingRight;
             Vector3 localScale = transform.localScale;
+            print("scale: " + localScale);
             localScale.x *= -1f;
             transform.localScale = localScale;
         }
