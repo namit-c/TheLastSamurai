@@ -38,6 +38,12 @@ public class PlayerMovement : MonoBehaviour
 
             horizontal = Input.GetAxisRaw("Horizontal");
 
+            if (Input.GetKeyUp(right) || Input.GetKeyUp(left))
+            {
+                animator.SetBool("Attack", true);
+                AttackAfterMove();
+            }
+
             if (Input.GetButtonDown("Jump"))
             {
 
@@ -46,26 +52,16 @@ public class PlayerMovement : MonoBehaviour
                     return;
                 }
                 lastJump = Time.time;
-
+                animator.SetBool("IsJumping", true);
                 rb.velocity = new Vector2(rb.velocity.x, jumpingPower);
                 
             }
 
-            
-
             if (Input.GetButtonUp("Jump") && rb.velocity.y > 0f)
             {
                 rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * 0.3f);
-                AttackAfterMove();
+                AttackAfterJump();
             }
-
-
-            if (Input.GetKeyUp(right) || Input.GetKeyUp(left))
-            {
-                AttackAfterMove();
-                animator.SetFloat("Speed", Mathf.Abs(speed));
-            }
-
             Flip();
         }
     }
@@ -75,12 +71,22 @@ public class PlayerMovement : MonoBehaviour
         attackMechanics.Attack(attackPoint2, attackRange2);
     }
 
+    public void AttackAfterJump()
+    {
+        SFXManager.sfxInstance.Audio.PlayOneShot(SFXManager.sfxInstance.Click);
+        attackMechanics.Attack(attackPoint2, attackRange2);
+        animator.SetBool("IsJumping", false);
+
+    }
+
     public void OnLanding(){
         animator.SetBool("IsJumping", false);
     }
 
     void FixedUpdate(){
         rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);
+        animator.SetBool("Attack", false);
+
     }
 
     private void Flip()
@@ -94,8 +100,4 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    private bool JumpCooldown()
-    {
-        return false;
-    }
 }
