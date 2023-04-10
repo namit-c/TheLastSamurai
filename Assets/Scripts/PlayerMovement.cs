@@ -36,15 +36,28 @@ public class PlayerMovement : MonoBehaviour
     {
         if(Time.time >= nextMoveTime){
 
-            horizontal = Input.GetAxisRaw("Horizontal");
+            //horizontal = Input.GetAxisRaw("Horizontal");
 
-            if (Input.GetKeyUp(right) || Input.GetKeyUp(left))
+            if (Input.GetKey(left))
+            {
+                rb.velocity = new Vector2(-speed, rb.velocity.y);
+            }
+            else if (Input.GetKey(right))
+            {
+                rb.velocity = new Vector2(speed, rb.velocity.y);
+            }
+
+            else if (Input.GetKeyUp(right) || Input.GetKeyUp(left))
             {
                 animator.SetBool("Attack", true);
                 AttackAfterMove();
             }
+            else
+            {
+                rb.velocity = new Vector2(0, rb.velocity.y);
+            }
 
-            if (Input.GetButtonDown("Jump"))
+            if (Input.GetKey(jumpButton))
             {
 
                 if (Time.time - lastJump < cooldown)
@@ -57,7 +70,7 @@ public class PlayerMovement : MonoBehaviour
                 
             }
 
-            if (Input.GetButtonUp("Jump") && rb.velocity.y > 0f)
+            if (Input.GetKeyUp(jumpButton) && rb.velocity.y > 0f)
             {
                 rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * 0.3f);
                 AttackAfterJump();
@@ -84,7 +97,7 @@ public class PlayerMovement : MonoBehaviour
     }
 
     void FixedUpdate(){
-        rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);
+        //rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);
         animator.SetBool("Attack", false);
 
     }
