@@ -26,9 +26,12 @@ public class PlayerMovement : MonoBehaviour
     public KeyCode right;
     public KeyCode jumpButton;
 
+    private Transform _originalParent;
+
 
     void Start(){
         rb = gameObject.GetComponent<Rigidbody2D>();
+        _originalParent = transform.parent;
     }
     
     void Update()
@@ -114,6 +117,17 @@ public class PlayerMovement : MonoBehaviour
         Vector3 localScale = transform.localScale;
         localScale.x *= -1f;
         transform.localScale = localScale;
+    }
+
+    public void SetParent(Transform newParent)
+    {
+        _originalParent = transform.parent;
+        transform.parent = newParent;
+    }
+
+    public void ResetParent()
+    {
+        transform.parent = _originalParent;
     }
 
 }

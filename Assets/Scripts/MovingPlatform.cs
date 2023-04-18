@@ -41,4 +41,21 @@ public class MovingPlatform : MonoBehaviour
         return _waypoints[_currentWaypointIndex];
     }
 
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        var platformMovement = other.collider.GetComponent<PlayerMovement>();
+        if (platformMovement != null)
+        {
+            platformMovement.SetParent(transform);
+        }
+    }
+    private void OnCollisionExit2D(Collision2D other)
+    {
+        var platformMovement = other.collider.GetComponent<PlayerMovement>();
+        if (platformMovement != null)
+        {
+            platformMovement.ResetParent();
+        }
+    }
+
 }
