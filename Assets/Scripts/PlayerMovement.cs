@@ -13,8 +13,6 @@ public class PlayerMovement : MonoBehaviour
     public float attackRange2;
 
     private float speed = 8f;
-    private float horizontal;
-    private bool jump = true;
     private Rigidbody2D rb;
     public float movementRate = 2f;
     private float jumpingPower = 24f;
@@ -28,6 +26,7 @@ public class PlayerMovement : MonoBehaviour
     public KeyCode right;
     public KeyCode jumpButton;
 
+
     void Start(){
         rb = gameObject.GetComponent<Rigidbody2D>();
     }
@@ -39,10 +38,22 @@ public class PlayerMovement : MonoBehaviour
             if (Input.GetKey(left))
             {
                 rb.velocity = new Vector2(-speed, rb.velocity.y);
+                
+                if (isFacingRight)
+                {
+                    Flip();
+                }
+                isFacingRight = false;
             }
             else if (Input.GetKey(right))
             {
                 rb.velocity = new Vector2(speed, rb.velocity.y);
+                
+                if (!isFacingRight)
+                {
+                    Flip();
+                }
+                isFacingRight = true;
             }
 
             else if (Input.GetKeyUp(right) || Input.GetKeyUp(left))
@@ -73,7 +84,7 @@ public class PlayerMovement : MonoBehaviour
                 rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * 0.3f);
                 AttackAfterJump();
             }
-            Flip();
+            
         }
     }
 
@@ -100,13 +111,9 @@ public class PlayerMovement : MonoBehaviour
 
     private void Flip()
     {
-        if (isFacingRight && horizontal < 0f || !isFacingRight && horizontal > 0f)
-        {
-            isFacingRight = !isFacingRight;
-            Vector3 localScale = transform.localScale;
-            localScale.x *= -1f;
-            transform.localScale = localScale;
-        }
+        Vector3 localScale = transform.localScale;
+        localScale.x *= -1f;
+        transform.localScale = localScale;
     }
 
 }
