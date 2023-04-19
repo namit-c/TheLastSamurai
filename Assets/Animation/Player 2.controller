@@ -63,7 +63,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Player-Jump
+  m_Name: Player-Jump2
   m_Speed: 2
   m_CycleOffset: 0
   m_Transitions:
@@ -78,7 +78,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 0ebc23327771546ca94730b0c630488c, type: 2}
+  m_Motion: {fileID: 7400000, guid: c919faa33c374bf41bbf2118e30baa29, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -115,7 +115,7 @@ AnimatorController:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Player1
+  m_Name: Player 2
   serializedVersion: 5
   m_AnimatorParameters:
   - m_Name: Speed
@@ -123,19 +123,19 @@ AnimatorController:
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: IsJumping
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: Attack
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   m_AnimatorLayers:
   - serializedVersion: 5
     m_Name: Base Layer
@@ -181,7 +181,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Player-Attack
+  m_Name: Player-Attack2
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
@@ -195,7 +195,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 6980b6a1b00a54ce2860ecb1bbe353f2, type: 2}
+  m_Motion: {fileID: 7400000, guid: 5cdcf49c7c2d0f34cb4b913741ac0be0, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -314,7 +314,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Player-Idle
+  m_Name: Player-Idle2
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
@@ -328,7 +328,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: de16b08484a4e4083a65beedc07585f3, type: 2}
+  m_Motion: {fileID: 7400000, guid: 407ec597cad898c41bc8b99d1428cd59, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
