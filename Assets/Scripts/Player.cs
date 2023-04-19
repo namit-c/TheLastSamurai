@@ -15,7 +15,7 @@ public class Player: MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        currentHealth = maxHealth;   
+        currentHealth = 50f;   
     }
 
     public void TakeDamage (float damage) {
