@@ -26,19 +26,39 @@ public class MovingPlatform : MonoBehaviour
             _speed * Time.deltaTime
             );
 
-        if(Vector2.Distance(transform.position, _targetWaypoint.position) < _checkDistance) {
+        if (Vector2.Distance(transform.position, _targetWaypoint.position) < _checkDistance)
+        {
             _targetWaypoint = GetNextWaypoint();
         }
     }
 
-    private Transform GetNextWaypoint() {
+    private Transform GetNextWaypoint()
+    {
 
         _currentWaypointIndex++;
-        if(_currentWaypointIndex >= _waypoints.Length) {
+        if (_currentWaypointIndex >= _waypoints.Length)
+        {
             _currentWaypointIndex = 0;
         }
 
         return _waypoints[_currentWaypointIndex];
+    }
+
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        var platformMovement = other.collider.GetComponent<PlayerMovement>();
+        if (platformMovement != null)
+        {
+            platformMovement.SetParent(transform);
+        }
+    }
+    private void OnCollisionExit2D(Collision2D other)
+    {
+        var platformMovement = other.collider.GetComponent<PlayerMovement>();
+        if (platformMovement != null)
+        {
+            platformMovement.ResetParent();
+        }
     }
 
 }
