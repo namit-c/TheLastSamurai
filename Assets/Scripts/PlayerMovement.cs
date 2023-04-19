@@ -12,7 +12,7 @@ public class PlayerMovement : MonoBehaviour
     public float attackRange1;
     public float attackRange2;
 
-    private float speed = 8f;
+    public float speed = 8f;
     private float horizontal;
     private bool jump = true;
     private Rigidbody2D rb;
