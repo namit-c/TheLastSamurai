@@ -1,4 +1,4 @@
-using System.Collections;
+ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -17,7 +17,7 @@ public class PlayerMovement : MonoBehaviour
     private bool jump = true;
     private Rigidbody2D rb;
     public float movementRate = 2f;
-    private float jumpingPower = 24f;
+    public float jumpingPower = 20f;
     public bool isFacingRight = true;
     
     private float nextMoveTime = 0f;
@@ -105,12 +105,10 @@ public class PlayerMovement : MonoBehaviour
 
     private void Flip(float horizontal)
     {
-        print("is facing right: " + isFacingRight + "; horizontal: " + horizontal);
         if (isFacingRight && horizontal < 0f || !isFacingRight && horizontal > 0f)
         {
             isFacingRight = !isFacingRight;
             Vector3 localScale = transform.localScale;
-            print("scale: " + localScale);
             localScale.x *= -1f;
             transform.localScale = localScale;
         }
