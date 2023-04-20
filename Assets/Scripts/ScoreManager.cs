@@ -16,15 +16,15 @@ public class ScoreManager: MonoBehaviour
     {
         instance = this;
         DontDestroyOnLoad(gameObject);
-        score1 = 0;
-        score1Text.text = "Rounds won: " + score1;
-        score2 = 0;
-        score2Text.text = "Rounds won: " + score2;
+        gameObject.SetActive(true);
+        // score1Text.text = "Rounds won: " + score1;
+        // score2Text.text = "Rounds won: " + score2;
     }
 
     // Update is called once per frame
     public void UpdateScore(int playerNumber)
     {
+        print("winning player: " + playerNumber);
         if(playerNumber == 1){
             score1 = score1 + 1;
             score1Text.text = "Rounds won: " + score1;
@@ -38,6 +38,7 @@ public class ScoreManager: MonoBehaviour
 
     public void ResetScore(int winningPlayer)
     {
+        gameObject.SetActive(false);
         gameOverScreen.Setup(winningPlayer, score1, score2);
         score1 = 0;
         score2 = 0;
