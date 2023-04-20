@@ -25,24 +25,20 @@ public class Player: MonoBehaviour
         
         if(currentHealth <= 0){
             // print("layer of object: " + gameObject.tag);
-
+            int winningPlayer;
+            print("tag: " + gameObject.tag);
             if(gameObject.tag == "Player1"){
-                scoreManager.UpdateScore(1);
+                winningPlayer = 2;
             }
-            else if(gameObject.tag == "Player2"){
-                scoreManager.UpdateScore(2);
+            else{
+                winningPlayer = 1;
             }
+            scoreManager.UpdateScore(winningPlayer);
+            
             if(SceneManager.GetActiveScene().buildIndex != 3){
                 switchScenes();
             }
             else{
-                int winningPlayer;
-                if(gameObject.tag == "Player1"){
-                    winningPlayer = 2;
-                }
-                else{
-                    winningPlayer = 1;
-                }
                 scoreManager.ResetScore(winningPlayer);
             }
         }
