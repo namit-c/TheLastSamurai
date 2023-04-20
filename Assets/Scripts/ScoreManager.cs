@@ -14,9 +14,14 @@ public class ScoreManager: MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
-        instance = this;
-        DontDestroyOnLoad(gameObject);
-        gameObject.SetActive(true);
+        if(instance != null){
+            Destroy(gameObject);
+        }
+        else{
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+            gameObject.SetActive(true);
+        }
         // score1Text.text = "Rounds won: " + score1;
         // score2Text.text = "Rounds won: " + score2;
     }
