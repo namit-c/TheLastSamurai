@@ -4,3 +4,6 @@ Picture two samurai coming across each other in an empty forest… orange leaves
 This game will have a unique hook and an exciting arcade feel that the many gamers already enjoy. Best played against friends, this game will be added to the pool of games like smash, duck game, and Brawlhalla but maintain its uniqueness to hold its own.
 
 The Last Samurai is a 2D fighting game centered around combat based movement. Every movememnt you make is an attack, forcing players to think about how they move very carefully. The Last Samurai was made in Unity, with C# scripting.
+
+Play it here:
+https://play.unity.com/mg/other/webgl-builds-339040
